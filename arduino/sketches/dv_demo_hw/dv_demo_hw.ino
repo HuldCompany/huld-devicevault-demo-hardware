@@ -50,7 +50,7 @@ const bool USE_LIGHT_SENSOR_BEEP = false;  // Beeps when the light sensor is cov
 * IMPLEMENTATION
 ******************************************************************************/
 
-#define DEMO_VERSION "v1.0"
+#define DEMO_VERSION "v1.01"
 
 // BOARD TYPE
 #if defined(ARDUINO_AVR_UNO)
@@ -383,6 +383,10 @@ int get_speed(void) {
     return analogRead(SENSE_ROTARY_INPUT_PIN);
 }
 
+void reset_arduino() {
+  asm volatile("jmp 0");
+}
+
 void menu_show(void) {
   // Header
   Serial.print("DeviceVault Demo Hardware ");
@@ -419,6 +423,7 @@ void menu_show(void) {
 #endif
   Serial.println("9: Toggle periodic print Time");
   Serial.println("0: Print Status (Formatted)");
+  Serial.println("x: Reset the Arduino");
   Serial.println("?: Show menu");
 }
 
@@ -446,6 +451,8 @@ void menu_check(void) {
     toggle_periodic_print_time();
   else if (c == '0')
     print_status_formatted();
+  else if (c == 'x')
+    reset_arduino();
   else if (c == '?')
     menu_show();
   else if (c != '\n') {
