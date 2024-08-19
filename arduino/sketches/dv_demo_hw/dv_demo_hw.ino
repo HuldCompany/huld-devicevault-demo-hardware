@@ -20,10 +20,10 @@
 // Note: if sensors are not available then the compilation may fail, initialisation hangs, or use is very slow
 
 // Only available on Grove Beginner Kit
-#define USE_TEMP_HUMIDITY_DHT20 true
-#define USE_PRESSURE_BMP280 true
-#define USE_ACCEL_LIS3DHTR true
-#define USE_OLED_U8X8 true
+//#define USE_TEMP_HUMIDITY_DHT20 true
+//#define USE_PRESSURE_BMP280 true
+//#define USE_ACCEL_LIS3DHTR true
+//#define USE_OLED_U8X8 true
 
 // Only available on Uno R3
 #define USE_LIGHT_SENSOR_A6 true
@@ -368,7 +368,7 @@ void set_speed(void) {
   // Get rid of any characters after the menu command, e.g. carriage return
   while (Serial.available())
     Serial.read();
-  Serial.print("Enter Speed value (0 to disable): ");
+  Serial.print("Enter Speed value (0 to to read from rotary potentiometer): ");
   Serial.setTimeout(10000);  // Timeout after which the manual speed will be set to zero (disabled)
   manual_speed_value = Serial.parseInt();
   last_blink_time = 0;
