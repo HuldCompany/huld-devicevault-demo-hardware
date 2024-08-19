@@ -29,7 +29,7 @@
 #define USE_LIGHT_SENSOR_A6 true
 
 // Only available on Uno R4
-// #define USE_LED_MATRIX true
+//#define USE_LED_MATRIX true
 
 // DEMO FEATURES
 const int DEFAULT_SPEED = 1000;            // Initial speed, 0 uses analog input to control speed
@@ -55,10 +55,13 @@ const bool USE_LIGHT_SENSOR_BEEP = false;  // Beeps when the light sensor is cov
 // BOARD TYPE
 #if defined(ARDUINO_AVR_UNO)
 #define BOARD_TYPE "Arduino Uno"
+#define RESET_AVR "RESET"
 #elif defined(ARDUINO_UNOR4_MINIMA)
 #define BOARD_TYPE "Arduino Uno R4 Minima"
+#define RESET_NVIC "RESET"
 #elif defined(ARDUINO_UNOR4_WIFI)
 #define BOARD_TYPE "Arduino Uno R4 WIFI"
+#define RESET_NVIC "RESET"
 #endif
 
 // Sensor libraries
@@ -384,7 +387,12 @@ int get_speed(void) {
 }
 
 void reset_arduino() {
+#if defined(RESET_AVR)
   asm volatile("jmp 0");
+#endif
+#if defined(RESET_NVIC)
+  NVIC_SystemReset();
+#endif
 }
 
 void menu_show(void) {
