@@ -2,4 +2,4 @@
 
 Firmware for DeviceVault demo hardware
 
-- [Arduino](arduino/README.md) - Sketch, installation and usage instructionsfor for using Arduino as demo hardware with serial communications
+- [Arduino](arduino) - Sketch, installation and usage instructionsfor for using Arduino as demo hardware with serial communications
